@@ -38,7 +38,9 @@ for (i in 1:total) assign(make.names(gsub("*.csv$", "", temp[i])), read.csv(temp
 query
 #and now copy the results from the command and paste below:
 Data_merged <- rbind(PoPCites1, PoPCites2)
-#drop papers that are repeated (due to several reasons, the main one being that they appear for the same co-authors in different downloaded data)
+#drop papers that are repeated (due to several reasons, the main one being that they appear for the same 
+#co-authors in different downloaded data). We consider a paper as repeated only if it has the same information for every field shown below (I've included
+#a lot of fields to avoid loosing data for publications where there is some missing data)
 Data_merged<-Data_merged[!duplicated(Data_merged[,c('Title', 'CitesURL', 'Year', 'Source', 'Type', 'Volume', 'Issue', 'ArticleURL',  'CitesPerYear', 
                                                     'Volume', 'StartPage')]),] 
 
