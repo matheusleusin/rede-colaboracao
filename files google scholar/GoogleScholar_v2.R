@@ -38,6 +38,9 @@ for (i in 1:total) assign(make.names(gsub("*.csv$", "", temp[i])), read.csv(temp
 query
 #and now copy the results from the command and paste below:
 Data_merged <- rbind(PoPCites1, PoPCites2)
+#drop papers that are repeated (due to several reasons, the main one being that they appear for the same co-authors in different downloaded data)
+Data_merged<-Data_merged[!duplicated(Data_merged[,c('Title', 'CitesURL', 'Year', 'Source', 'Type', 'Volume', 'Issue', 'ArticleURL',  'CitesPerYear', 
+                                                    'Volume', 'StartPage')]),] 
 
 #now we select the columns we want:
 Data_merged <- Data_merged[,c(2,24,11,12,13,19,6,5,3,7,15,4)]
